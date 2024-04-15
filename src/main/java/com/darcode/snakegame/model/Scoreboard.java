@@ -7,7 +7,7 @@ import lombok.AllArgsConstructor;
 
 @Entity
 @AllArgsConstructor
-public class GameScore {
+public class Scoreboard {
 
     @Id
     @GeneratedValue
@@ -15,10 +15,10 @@ public class GameScore {
     private Long userid;
     private Long score;
 
-    public GameScore() {
+    public Scoreboard() {
     }
 
-    public GameScore(Long userid, Long score) {
+    public Scoreboard(Long userid, Long score) {
         this.userid = userid;
         this.score = score;
     }
