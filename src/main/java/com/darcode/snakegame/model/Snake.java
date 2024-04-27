@@ -13,12 +13,14 @@ public class Snake {
     @GeneratedValue
     private Long snakeid;
     private String snakecolor;
+    private Long userid;
 
     public Snake() {
     }
 
-    public Snake(String snakecolor) {
+    public Snake(String snakecolor, Long userid) {
         this.snakecolor = snakecolor;
+        this.userid = userid;
     }
 
     public Long getSnakeid() {
@@ -35,6 +37,14 @@ public class Snake {
 
     public void setSnakecolor(String snakecolor) {
         this.snakecolor = snakecolor;
+    }
+
+    public Long getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Long userid) {
+        this.userid = userid;
     }
 
 }

@@ -12,14 +12,14 @@ public class Food {
     @Id
     @GeneratedValue
     private Long foodid;
-    private String foodtype;
     private String foodcolor;
+    private Long userid;
 
     public Food() {
     }
 
-    public Food(String foodtype, String foodcolor) {
-        this.foodtype = foodtype;
+    public Food(Long userid, String foodcolor) {
+        this.userid = userid;
         this.foodcolor = foodcolor;
     }
 
@@ -31,20 +31,20 @@ public class Food {
         this.foodid = foodid;
     }
 
-    public String getFoodtype() {
-        return foodtype;
-    }
-
-    public void setFoodtype(String foodtype) {
-        this.foodtype = foodtype;
-    }
-
     public String getFoodcolor() {
         return foodcolor;
     }
 
     public void setFoodcolor(String foodcolor) {
         this.foodcolor = foodcolor;
+    }
+
+    public Long getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Long userid) {
+        this.userid = userid;
     }
 
 }
