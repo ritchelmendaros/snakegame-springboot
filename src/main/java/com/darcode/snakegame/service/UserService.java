@@ -8,9 +8,11 @@ import org.springframework.stereotype.Service;
 
 import com.darcode.snakegame.UserRegistrationRequest;
 import com.darcode.snakegame.model.Food;
+import com.darcode.snakegame.model.Scoreboard;
 import com.darcode.snakegame.model.Snake;
 import com.darcode.snakegame.model.User;
 import com.darcode.snakegame.repository.FoodRepository;
+import com.darcode.snakegame.repository.ScoreboardRepository;
 import com.darcode.snakegame.repository.SnakeRepository;
 import com.darcode.snakegame.repository.UserRepository;
 
@@ -20,12 +22,15 @@ public class UserService {
     private final UserRepository userRepository;
     private final SnakeRepository snakeRepository;
     private final FoodRepository foodRepository;
+    private final ScoreboardRepository scoreboardRepository;
 
     @Autowired
-    public UserService(UserRepository userRepository, SnakeRepository snakeRepository, FoodRepository foodRepository) {
+    public UserService(UserRepository userRepository, SnakeRepository snakeRepository, FoodRepository foodRepository,
+            ScoreboardRepository scoreboardRepository) {
         this.userRepository = userRepository;
         this.foodRepository = foodRepository;
         this.snakeRepository = snakeRepository;
+        this.scoreboardRepository = scoreboardRepository;
     }
 
     public boolean existsByUsername(String username) {
@@ -49,6 +54,9 @@ public class UserService {
 
         Food food = new Food(savedUser.getUserid(), foodColor);
         foodRepository.save(food);
+
+        Scoreboard scoreboard = new Scoreboard(savedUser.getUserid(), 0L);
+        scoreboardRepository.save(scoreboard);
     }
 
     public User findByUsername(String username, String password) {

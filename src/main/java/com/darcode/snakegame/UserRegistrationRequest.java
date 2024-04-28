@@ -7,6 +7,15 @@ public class UserRegistrationRequest {
     private String password;
     private String snakeColor;
     private String foodColor;
+    private Long score;
+
+    public Long getScore() {
+        return score;
+    }
+
+    public void setScore(Long score) {
+        this.score = score;
+    }
 
     public String getFirstname() {
         return firstname;
