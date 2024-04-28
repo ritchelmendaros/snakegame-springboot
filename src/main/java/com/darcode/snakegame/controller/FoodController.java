@@ -29,4 +29,15 @@ public class FoodController {
                     .body("Error updating food color: " + e.getMessage());
         }
     }
+
+    @GetMapping("/getFoodColor")
+    public ResponseEntity<String> getFoodColor(@RequestParam("userid") Long userId) {
+        try {
+            String foodColor = foodService.getFoodColor(userId);
+            return ResponseEntity.ok(foodColor);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error fetching food color: " + e.getMessage());
+        }
+    }
 }

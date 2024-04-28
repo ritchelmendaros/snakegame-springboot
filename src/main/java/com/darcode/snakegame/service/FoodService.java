@@ -22,4 +22,10 @@ public class FoodService {
         food.setFoodcolor(foodColor);
         foodRepository.save(food);
     }
+
+    public String getFoodColor(Long userId) {
+        Food food = foodRepository.findByUserid(userId)
+                .orElseThrow(() -> new RuntimeException("Food not found for user with id: " + userId));
+        return food.getFoodcolor();
+    }
 }
