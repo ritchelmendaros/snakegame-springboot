@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.darcode.snakegame.UserRegistrationRequest;
 import com.darcode.snakegame.model.Food;
 import com.darcode.snakegame.model.Snake;
 import com.darcode.snakegame.model.User;
 import com.darcode.snakegame.repository.FoodRepository;
 import com.darcode.snakegame.repository.SnakeRepository;
 import com.darcode.snakegame.repository.UserRepository;
-import com.darcode.snakegame.utils.UserRegistrationRequest;
 
 @Service
 public class UserService {
@@ -68,5 +68,14 @@ public class UserService {
             System.err.println("Error occurred while finding user by username: " + e.getMessage());
             throw new RuntimeException("Error finding user by username: " + e.getMessage());
         }
+    }
+
+    public Long getUserIdByUsername(String username) {
+        Optional<User> userOptional = userRepository.findByUsername(username);
+        if (userOptional != null) {
+            User user = userOptional.get();
+            return user.getUserid();
+        }
+        return null;
     }
 }
