@@ -29,4 +29,15 @@ public class SnakeController {
                     .body("Error updating snake color: " + e.getMessage());
         }
     }
+
+    @GetMapping("/getSnakeColor")
+    public ResponseEntity<String> getSnakeColor(@RequestParam("userid") Long userId) {
+        try {
+            String snakeColor = snakeService.getSnakeColor(userId);
+            return ResponseEntity.ok(snakeColor);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error fetching snake color: " + e.getMessage());
+        }
+    }
 }

@@ -1,5 +1,6 @@
 package com.darcode.snakegame.service;
 
+import com.darcode.snakegame.model.Food;
 import com.darcode.snakegame.model.Snake;
 import com.darcode.snakegame.repository.SnakeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,15 @@ public class SnakeService {
         if (snake != null) {
             snake.setSnakecolor(newColor);
             snakeRepository.save(snake);
+        } else {
+            throw new RuntimeException("Snake not found for user ID: " + userId);
+        }
+    }
+
+    public String getSnakeColor(Long userId) {
+        Snake snake = snakeRepository.findByUserid(userId);
+        if (snake != null) {
+            return snake.getSnakecolor();
         } else {
             throw new RuntimeException("Snake not found for user ID: " + userId);
         }
