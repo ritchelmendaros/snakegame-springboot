@@ -14,4 +14,6 @@ public interface ScoreboardRepository extends JpaRepository<Scoreboard, Long> {
     Long findHighestScoreByUserid(@Param("userid") Long userid);
 
     List<Scoreboard> findAllByOrderByScoreDesc();
+
+    Object findByUserid(Long userid);
 }

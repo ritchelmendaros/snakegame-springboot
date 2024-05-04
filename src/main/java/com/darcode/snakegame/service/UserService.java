@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
-import com.darcode.snakegame.UserRegistrationRequest;
 import com.darcode.snakegame.model.Food;
 import com.darcode.snakegame.model.Scoreboard;
 import com.darcode.snakegame.model.Snake;
@@ -15,6 +14,7 @@ import com.darcode.snakegame.repository.FoodRepository;
 import com.darcode.snakegame.repository.ScoreboardRepository;
 import com.darcode.snakegame.repository.SnakeRepository;
 import com.darcode.snakegame.repository.UserRepository;
+import com.darcode.snakegame.utils.UserRegistrationRequest;
 
 @Service
 public class UserService {

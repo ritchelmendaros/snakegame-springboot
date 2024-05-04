@@ -1,4 +1,4 @@
-package com.darcode.snakegame;
+package com.darcode.snakegame.utils;
 
 import com.darcode.snakegame.model.User;
 

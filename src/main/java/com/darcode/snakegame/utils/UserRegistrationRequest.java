@@ -1,4 +1,4 @@
-package com.darcode.snakegame;
+package com.darcode.snakegame.utils;
 
 public class UserRegistrationRequest {
     private String firstname;

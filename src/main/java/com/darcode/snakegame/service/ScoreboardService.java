@@ -1,17 +1,12 @@
 package com.darcode.snakegame.service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Collectors;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.darcode.snakegame.UserScoreDTO;
 import com.darcode.snakegame.model.Scoreboard;
-import com.darcode.snakegame.model.User;
 import com.darcode.snakegame.repository.ScoreboardRepository;
 import com.darcode.snakegame.repository.UserRepository;
 
@@ -37,5 +32,14 @@ public class ScoreboardService {
 
     public List<Scoreboard> getLeaderboard() {
         return scoreboardRepository.findAllByOrderByScoreDesc();
+    }
+
+    public void updateScore(Long userId, Long newScore) {
+        Scoreboard existingScore = (Scoreboard) scoreboardRepository.findByUserid(userId);
+        if (existingScore == null) {
+            throw new NoSuchElementException("Score with UserID " + userId + " not found");
+        }
+        existingScore.setScore(newScore);
+        scoreboardRepository.save(existingScore);
     }
 }
