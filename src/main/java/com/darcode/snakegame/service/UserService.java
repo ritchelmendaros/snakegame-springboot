@@ -49,7 +49,7 @@ public class UserService {
         Long userId = savedUser.getUserid();
 
         String snakeColor = "#0000FF";
-        String foodColor = "#FF0000";
+        String foodColor = "..\\images\\apple.png";
 
         Snake snake = new Snake(snakeColor, userId);
         snakeRepository.save(snake);
