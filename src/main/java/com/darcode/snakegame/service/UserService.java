@@ -46,16 +46,18 @@ public class UserService {
                 request.getPassword());
         User savedUser = userRepository.save(user);
 
+        Long userId = savedUser.getUserid();
+
         String snakeColor = "#0000FF";
         String foodColor = "#FF0000";
 
-        Snake snake = new Snake(snakeColor, savedUser.getUserid());
+        Snake snake = new Snake(snakeColor, userId);
         snakeRepository.save(snake);
 
-        Food food = new Food(savedUser.getUserid(), foodColor);
+        Food food = new Food(userId, foodColor);
         foodRepository.save(food);
 
-        Scoreboard scoreboard = new Scoreboard(savedUser.getUserid(), 0L);
+        Scoreboard scoreboard = new Scoreboard(userId, 0L);
         scoreboardRepository.save(scoreboard);
     }
 

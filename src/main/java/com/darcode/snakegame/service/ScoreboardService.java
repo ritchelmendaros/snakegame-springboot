@@ -28,7 +28,7 @@ public class ScoreboardService {
     }
 
     public Long getHighScore(Long userId) {
-        return scoreboardRepository.findHighestScoreByUserid(userId);
+        return scoreboardRepository.findHighestScoreByUserId(userId);
     }
 
     public List<Scoreboard> getLeaderboard() {
@@ -36,7 +36,7 @@ public class ScoreboardService {
     }
 
     public void updateScore(Long userId, Long newScore) {
-        Scoreboard existingScore = (Scoreboard) scoreboardRepository.findByUserid(userId);
+        Scoreboard existingScore = scoreboardRepository.findByUser_Userid(userId);
         if (existingScore == null) {
             throw new NoSuchElementException("Score with UserID " + userId + " not found");
         }
@@ -45,7 +45,7 @@ public class ScoreboardService {
     }
 
     public Long getScore(Long userId) {
-        Scoreboard existingScore = (Scoreboard) scoreboardRepository.findByUserid(userId);
+        Scoreboard existingScore = scoreboardRepository.findByUser_Userid(userId);
         return existingScore != null ? existingScore.getScore() : 0L;
     }
 }

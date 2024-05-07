@@ -10,10 +10,10 @@ import com.darcode.snakegame.model.Scoreboard;
 
 public interface ScoreboardRepository extends JpaRepository<Scoreboard, Long> {
 
-    @Query("SELECT MAX(s.score) FROM Scoreboard s WHERE s.userid = :userid")
-    Long findHighestScoreByUserid(@Param("userid") Long userid);
+    @Query("SELECT MAX(s.score) FROM Scoreboard s WHERE s.user.userid = :userId")
+    Long findHighestScoreByUserId(@Param("userId") Long userId);
 
     List<Scoreboard> findAllByOrderByScoreDesc();
 
-    Object findByUserid(Long userid);
+    Scoreboard findByUser_Userid(Long userId);
 }

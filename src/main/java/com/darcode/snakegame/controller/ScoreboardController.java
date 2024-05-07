@@ -63,7 +63,11 @@ public class ScoreboardController {
     @PutMapping("/updateScore")
     public ResponseEntity<?> updateScoreOnScoreboard(@RequestBody Scoreboard score) {
         try {
-            Long userId = score.getUserid();
+            if (score.getUser() == null) {
+                return ResponseEntity.badRequest().body("User object is null");
+            }
+
+            Long userId = score.getUser().getUserid();
             Long newScore = score.getScore();
 
             Long savedScore = scoreboardService.getScore(userId);
