@@ -2,6 +2,7 @@ package com.darcode.snakegame.service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,5 +42,10 @@ public class ScoreboardService {
         }
         existingScore.setScore(newScore);
         scoreboardRepository.save(existingScore);
+    }
+
+    public Long getScore(Long userId) {
+        Scoreboard existingScore = (Scoreboard) scoreboardRepository.findByUserid(userId);
+        return existingScore != null ? existingScore.getScore() : 0L;
     }
 }

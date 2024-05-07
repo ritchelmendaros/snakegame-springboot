@@ -63,11 +63,20 @@ public class ScoreboardController {
     @PutMapping("/updateScore")
     public ResponseEntity<?> updateScoreOnScoreboard(@RequestBody Scoreboard score) {
         try {
-            scoreboardService.updateScore(score.getUserid(), score.getScore());
-            return ResponseEntity.ok("Score updated successfully");
+            Long userId = score.getUserid();
+            Long newScore = score.getScore();
+
+            Long savedScore = scoreboardService.getScore(userId);
+            if (newScore > savedScore) {
+                scoreboardService.updateScore(userId, newScore);
+                return ResponseEntity.ok("Score updated successfully");
+            } else {
+                return ResponseEntity.ok("New score is not higher than the saved score");
+            }
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Error updating score: " + e.getMessage());
         }
     }
+
 }
